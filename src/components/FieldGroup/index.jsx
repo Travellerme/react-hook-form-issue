@@ -19,7 +19,7 @@ export const FieldGroup = ({
     <div>
       {toggleable && (
         <div>
-          <input type="checkbox" id="toggle" name="toggle" onClick={onToggle} checked={!collapsed} />
+          <input type="checkbox" id="toggle" name="toggle" onChange={onToggle} checked={!collapsed} />
           <label htmlFor="toggle">{heading}</label>
         </div>
       )}
