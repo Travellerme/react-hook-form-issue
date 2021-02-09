@@ -11,7 +11,7 @@
 
 **To Reproduce**
 Steps to reproduce the behavior:
-- Please clone thegit repo with [reproducible scenarios:](https://github.com/Travellerme/react-hook-form-issue)
+- Please clone the git repo with [reproducible scenarios:](https://github.com/Travellerme/react-hook-form-issue)
 - Make `npm install`
 - Run `npm run dev:make-build-and-serve:run`
 
