@@ -44,8 +44,8 @@ Steps to reproduce the behavior:
 ![Dev Second scenario gif](Dev_second_scenario.gif?raw=true "Dev Second scenario")
 
 **Codesandbox link (Required)**
-I cannot include a codesandbox link, as this issue is reproducable only for `production` mode. Please check the github repo instead.
-Include a codesandbox will help us to investigate the issue quicker.
+I cannot include a codesandbox link, as this issue is reproducable only for `production` mode.
+[Please check the github repo instead:](https://github.com/Travellerme/react-hook-form-issue)
 
 **Expected behavior**
 - `isValid` must behave itself equally for `production` and `dev` builds.
