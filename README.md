@@ -67,3 +67,5 @@ I cannot include a codesandbox link, as this issue is reproducable only for `pro
 
 **Additional context**
 This issue is reproducible only by using `useFieldArray`
+
+`isDirty` and other flags are also affected
