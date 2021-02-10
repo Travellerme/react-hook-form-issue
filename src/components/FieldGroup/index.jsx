@@ -15,8 +15,18 @@ export const FieldGroup = ({
   return (
     <div>
       <div>
-        <input type="checkbox" id={fieldName} name={fieldName} onChange={onToggle} checked={!collapsed} />
-        <label htmlFor="toggle">{heading}</label>
+
+        <label className="label">
+          <input
+              className="checkbox"
+              type="checkbox"
+              id={fieldName}
+              name={fieldName}
+              onChange={onToggle}
+              checked={!collapsed}
+          />
+              {heading}
+        </label>
       </div>
       {!collapsed && children}
     </div>

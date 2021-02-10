@@ -1,6 +1,4 @@
 import React, { useMemo } from 'react'
-import { get } from 'lodash'
-import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { useOnChangeHandler } from "./hooks";
 
@@ -11,20 +9,14 @@ const InputCreator = ({ fieldPrefix = 'prefix', fieldsConf, actions }) => {
     name: fieldPrefix,
   })
   const fieldNames = useMemo(() => Object.keys(fieldsConf || {}), [fieldsConf])
-  const colSize = useMemo(() => Math.floor(12 / fieldNames.length), [
-    fieldNames,
-  ])
   const onChangeHandler = useOnChangeHandler()
   return (
     <>
       {fields.map((field, rowId) => (
-        <Row key={field.id}>
+        <li key={field.id}>
           {fieldNames.map((name, colId) => (
-            <Col
-              key={`${fieldPrefix}.${field.id}.${colId.toString()}`}
-              size={fieldsConf[name].colSize || (colSize)}
-            >
               <Controller
+                key={`${fieldPrefix}.${field.id}.${colId.toString()}`}
                 rules={{ validate: fieldsConf[name].validate }}
                 name={`${fieldPrefix}[${rowId}].${name}`}
                 control={control}
@@ -32,25 +24,23 @@ const InputCreator = ({ fieldPrefix = 'prefix', fieldsConf, actions }) => {
                 render={({ onChange, value }) => (
                   <>
                     {/* You can use any third-party or custom Inputs, the result will be the same */}
-                    <FormGroup>
-                      <Label for={name}>{fieldsConf[name].label}</Label>
-                      <Input
-                          value={value}
-                          type={fieldsConf[name].type}
-                          name={name}
-                          placeholder={fieldsConf[name].placeholder}
+                    <div>
+                      <input 
+                          type={fieldsConf[name].type} 
+                          name={name} placeholder={fieldsConf[name].placeholder} 
                           onChange={onChangeHandler(onChange)}
                       />
+                      <label htmlFor={name}>{fieldsConf[name].label}</label>
                       <div slot="error-message" className="alert-danger">
-                        {String(get(errors, `${fieldPrefix}[${rowId}].${name}.message`, ''))}
+                        {String(errors[fieldPrefix]?.[rowId]?.[name]?.message || '')}
                       </div>
-                    </FormGroup>
+                    </div>
+
                   </>
                 )}
               />
-            </Col>
           ))}
-        </Row>
+        </li>
       ))}
     </>
   )

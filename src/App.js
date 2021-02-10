@@ -53,7 +53,6 @@ function App() {
     const {
         formState: { isValid },
     } = form
-    console.log('expanded',expanded)
     console.log('isValid',isValid)
     return (
         <div className="App">
@@ -74,7 +73,7 @@ function App() {
                         <InputCreator fieldPrefix="productsCart2" {...conf} />
                     </FieldGroup>
                 </FormProvider>
-                <div><b>isValid: {isValid.toString()}</b></div>
+                <div className="alert-danger"><b>isValid: {isValid.toString()}</b></div>
 
         </div>
     );
