@@ -1,28 +1,23 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
+import { v4 } from 'uuid'
 
 export const FieldGroup = ({
   heading,
-  toggleable = true,
-  enabled = false,
+  collapsed = false,
   toggleHandler = () => null,
   children,
 }) => {
-  const [collapsed, setCollapsed] = useState(() => (toggleable ? !enabled : false))
   const onToggle = useCallback(() => {
-    toggleHandler(!collapsed)
-  }, [collapsed, toggleHandler])
-  useEffect(() => {
-    const newCollapsedState = !enabled
-    newCollapsedState !== collapsed && setCollapsed(newCollapsedState)
-  }, [collapsed, enabled])
+    toggleHandler()
+  }, [toggleHandler])
+  const id = v4().substr(0,5)
+  const fieldName = `toggle-${id}`
   return (
     <div>
-      {toggleable && (
-        <div>
-          <input type="checkbox" id="toggle" name="toggle" onChange={onToggle} checked={!collapsed} />
-          <label htmlFor="toggle">{heading}</label>
-        </div>
-      )}
+      <div>
+        <input type="checkbox" id={fieldName} name={fieldName} onChange={onToggle} checked={!collapsed} />
+        <label htmlFor="toggle">{heading}</label>
+      </div>
       {!collapsed && children}
     </div>
   )

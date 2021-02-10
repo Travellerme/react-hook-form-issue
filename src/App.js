@@ -45,31 +45,31 @@ function App() {
     }))
     const form = useForm({
         mode: 'onChange',
-        defaultValues: { productsCart: [{ quantity: '', productReferences: '' }], productsCart2: [{ quantity: '', productReferences: '' }]  }
+        defaultValues: {
+            productsCart: [{ quantity: '', productReferences: '' }],
+            productsCart2: [{ quantity: '', productReferences: '' }]
+        }
     })
     const {
         formState: { isValid },
     } = form
+    console.log('expanded',expanded)
     console.log('isValid',isValid)
     return (
         <div className="App">
                 <FormProvider {...form}>
                     <FieldGroup
-                        isControlled
                         description='Description'
-                        enabled={expanded.productsCart}
-                        toggleHandler={(value) => setExpanded({ productsCart: !value, productsCart2: false })}
+                        collapsed={!expanded.productsCart}
+                        toggleHandler={() =>console.log('setExpanded1') || setExpanded({ productsCart: !expanded.productsCart, productsCart2: false})}
                         heading={'Heading'}
-                        toggleable
                     >
                         <InputCreator fieldPrefix="productsCart" {...conf} />
                     </FieldGroup>
                     <FieldGroup
-                        isControlled
-                        enabled={expanded.productsCart2}
-                        toggleHandler={(value) => setExpanded({ productsCart2: !value, productsCart: false })}
+                        collapsed={!expanded.productsCart2}
+                        toggleHandler={() => console.log('setExpanded2') || setExpanded({ productsCart2: !expanded.productsCart2, productsCart: false })}
                         heading={'Heading2'}
-                        toggleable
                     >
                         <InputCreator fieldPrefix="productsCart2" {...conf} />
                     </FieldGroup>
