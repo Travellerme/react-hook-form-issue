@@ -46,6 +46,9 @@ Steps to reproduce the behavior:
 **Codesandbox link (Required)**
 [Codesandbox:](https://codesandbox.io/s/heuristic-kirch-nnhth)
 Please make sure that you go to the `Deployment` section and made a `production` build and deployed it to `Netlify`
+
+Then please click `Visit Site` link
+
 ![Codesandbox](Codesandbox.png?raw=true "Codesandbox")
 
 **Expected behavior**
