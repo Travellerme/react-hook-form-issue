@@ -2,30 +2,19 @@ import React, { useMemo } from 'react'
 import { get } from 'lodash'
 import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
-// import styles from './InputCreator.module.scss'
-import { useAddNewRowHandler, useGetActionElements, useOnChangeHandler, useRemoveRowHandler } from "./hooks";
+import { useOnChangeHandler } from "./hooks";
 
 const InputCreator = ({ fieldPrefix = 'prefix', fieldsConf, actions }) => {
   const { control, errors } = useFormContext()
-  const { fields, append, remove } = useFieldArray({
+  const { fields } = useFieldArray({
     control,
     name: fieldPrefix,
   })
   const fieldNames = useMemo(() => Object.keys(fieldsConf || {}), [fieldsConf])
-  const ifActionsExist = useMemo(() => Boolean(actions && Object.keys(actions).length), [actions])
-  const colSize = useMemo(() => Math.floor((ifActionsExist ? 10 : 12) / fieldNames.length), [
+  const colSize = useMemo(() => Math.floor(12 / fieldNames.length), [
     fieldNames,
-    ifActionsExist,
   ])
   const onChangeHandler = useOnChangeHandler()
-  const addNewRowHandler = useAddNewRowHandler({ append, fieldNames })
-  const removeRowHandler = useRemoveRowHandler(remove)
-  const getActionElems = useGetActionElements({
-    fields,
-    actions,
-    addNewRowHandler,
-    removeRowHandler,
-  })
   return (
     <>
       {fields.map((field, rowId) => (
@@ -52,7 +41,7 @@ const InputCreator = ({ fieldPrefix = 'prefix', fieldsConf, actions }) => {
                           placeholder={fieldsConf[name].placeholder}
                           onChange={onChangeHandler(onChange)}
                       />
-                      <div slot="error-message">
+                      <div slot="error-message" className="alert-danger">
                         {String(get(errors, `${fieldPrefix}[${rowId}].${name}.message`, ''))}
                       </div>
                     </FormGroup>
@@ -61,11 +50,6 @@ const InputCreator = ({ fieldPrefix = 'prefix', fieldsConf, actions }) => {
               />
             </Col>
           ))}
-          {ifActionsExist && (
-            <Col size={2}>
-              {getActionElems(rowId)}
-            </Col>
-          )}
         </Row>
       ))}
     </>

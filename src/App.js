@@ -35,8 +35,7 @@ const conf = {
               })
               .validate(value).error?.message
         }
-    },
-    "actions": {"plus": {"size": "xs"}, "minus": {"size": "xs"}}
+    }
 }
 
 function App() {
