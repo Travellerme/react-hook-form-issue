@@ -8,7 +8,6 @@ import {FormProvider, useForm} from "react-hook-form";
 const conf = {
     "fieldsConf": {
         "quantity": {
-            "colSize": 4,
             "type": "number",
             "required": true,
             "placeholder": "Enter quantity",
@@ -23,7 +22,6 @@ const conf = {
                 .validate(value).error?.message
         },
         "productReferences": {
-            "colSize": 6,
             "type": "text",
             "required": true,
             "placeholder": "Enter the Product ID",
